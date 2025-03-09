@@ -1,0 +1,1597 @@
+{
+	"info": {
+		"_postman_id": "880f79b8-830e-40be-b170-90b94e0faa8e",
+		"name": "ProgramBatch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41597061",
+		"_collection_link": "https://team10postmanpatrollers.postman.co/workspace/Team10_PostmanPatrollers~a2919e04-cce3-4325-86a1-90f3eee368bf/collection/41597061-880f79b8-830e-40be-b170-90b94e0faa8e?action=share&source=collection_link&creator=41597061"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.json().token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{Username}}\",\r\n  \"password\": \"{{Password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/login",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatchesbybatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/batchId/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchId",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatchesby invalidbatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/batchId/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchId",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatchesBatchname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/batchName/team10-team1",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchName",
+						"team10-team1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatches by invalidBatchname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/batchName/team10team1",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchName",
+						"team10team1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatchesProgramid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/program/16914",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"program",
+						"16914"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllBatchesby invalidProgramid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/batches/program/6914",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"program",
+						"6914"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatewithValidBatchida_InactiveStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// // Test 2: Check if the response status line is  (OK)\r",
+							"// pm.test(\"Status Line is \", function () {\r",
+							"//     pm.response.to.have.status(\"OK\");\r",
+							"// });\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"batchId\": 9178,\r\n        \"batchName\": \"Achievers12345\",\r\n        \"batchDescription\": \"test batch\",\r\n        \"batchStatus\": \"Active\",\r\n        \"batchNoOfClasses\": 10,\r\n        \"programId\": 16666,\r\n        \"programName\": \"Achievers\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9178",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9178"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updatewith ValidBatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// // Test 2: Check if the response status line is  (OK)\r",
+							"// pm.test(\"Status Line is \", function () {\r",
+							"//     pm.response.to.have.status(\"OK\");\r",
+							"// });\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"batchId\": 9660,\r\n        \"batchName\": \"team10updated3\",\r\n        \"batchDescription\": \"test batch\",\r\n        \"batchStatus\": \"Active\",\r\n        \"batchNoOfClasses\": 11,\r\n        \"programId\": 16914,\r\n        \"programName\": \"Achievers\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updatewith ValidBatchid (without token)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"//Test 1: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 2: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"batchId\": 9542,\r\n        \"batchName\": \"team10updated2\",\r\n        \"batchDescription\": \"test batch\",\r\n        \"batchStatus\": \"Active\",\r\n        \"batchNoOfClasses\": 11,\r\n        \"programId\": 16914,\r\n        \"programName\": \"Achievers\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9542",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9542"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updatewith invalidData -ValidBatchid Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// // Test 2: Check if the response status line is  (OK)\r",
+							"// pm.test(\"Status Line is \", function () {\r",
+							"//     pm.response.to.have.status(\"OK\");\r",
+							"// });\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"batchId\": 9542,\r\n        \"batchName\": \"team10updated2\",\r\n        \"batchDescription\": \"test batch\",\r\n        \"batchStatus\": \"gjActive\",\r\n        \"batchNoOfClasses\": 11,\r\n        \"programId\": 86914,\r\n        \"programName\": \"Achievers\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9542",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9542"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updatewith  InValidBatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// // Test 2: Check if the response status line is  (OK)\r",
+							"// pm.test(\"Status Line is \", function () {\r",
+							"//     pm.response.to.have.status(\"OK\");\r",
+							"// });\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"batchId\": 9177,\r\n        \"batchName\": \"Achievers123456\",\r\n        \"batchDescription\": \"test batch\",\r\n        \"batchStatus\": \"Active\",\r\n        \"batchNoOfClasses\": 10,\r\n        \"programId\": 16667,\r\n        \"programName\": \"Achievers\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withInvalidBatchname(duplicatebatchname)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (Bad Request)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10_team\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16914\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withInvalidBatchname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (Bad Request)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10-team\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16914\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "withvalidBatchname (without token)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Status code is 400\", function () {\r",
+							"//     pm.response.to.have.status(401);\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"Unauthorized - Authentication required\", function () {\r",
+							"//             pm.expect(statusCode).to.equal(401);\r",
+							"\r",
+							"\r",
+							"// // Test 2: Check if the response status line is  (Bad Request)\r",
+							"// pm.test(\"Status Line is \", function () {\r",
+							"//     pm.response.to.have.status(\"Unauthorized\");\r",
+							"// });\r",
+							"\r",
+							"// //Test 3: Check if the response has a json body\r",
+							"// pm.test(\"Response has a Json body\"), function(){\r",
+							"//     pm.response.to.have.jsonBody(true);\r",
+							"// }\r",
+							"\r",
+							"// // Test 4: Validate response time is less than 500ms\r",
+							"// pm.test(\"Response time is less than 500ms\", function () {\r",
+							"//     pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"// });\r",
+							"\r",
+							"// // Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"// pm.test(\"Content-Type header is application/json\", function () {\r",
+							"//     pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"// });\r",
+							"\r",
+							"\r",
+							"// // Parse the response body\r",
+							"// const responseData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check status code and display error messages\", function () {\r",
+							"    var statusCode = pm.response.code;\r",
+							"    \r",
+							"    // Custom Error Messages for different status codes\r",
+							"    if (statusCode === 200) {\r",
+							"        pm.test(\"Request was successful\", function () {\r",
+							"            pm.expect(statusCode).to.equal(200);\r",
+							"        });\r",
+							"    } \r",
+							"    else if (statusCode === 400) {\r",
+							"        pm.test(\"Bad Request - The server could not understand the request\", function () {\r",
+							"            pm.expect(statusCode).to.equal(400);\r",
+							"        });\r",
+							"    } \r",
+							"    else if (statusCode === 401) {\r",
+							"        pm.test(\"Unauthorized - Authentication required\", function () {\r",
+							"            pm.expect(statusCode).to.equal(401);\r",
+							"        });\r",
+							"    }\r",
+							"    else if (statusCode === 403) {\r",
+							"        pm.test(\"Forbidden - You do not have permission to access this resource\", function () {\r",
+							"            pm.expect(statusCode).to.equal(403);\r",
+							"        });\r",
+							"    }\r",
+							"    else if (statusCode === 404) {\r",
+							"        pm.test(\"Not Found - The requested resource could not be found\", function () {\r",
+							"            pm.expect(statusCode).to.equal(404);\r",
+							"        });\r",
+							"    }\r",
+							"     else if (statusCode === 405) {\r",
+							"        pm.test(\"Method Not Allowed\", function () {\r",
+							"            pm.expect(statusCode).to.equal(405);\r",
+							"        });\r",
+							"    }\r",
+							"    else if (statusCode === 500) {\r",
+							"        pm.test(\"Internal Server Error - Something went wrong on the server\", function () {\r",
+							"            pm.expect(statusCode).to.equal(500);\r",
+							"        });\r",
+							"    } \r",
+							"    else {\r",
+							"        pm.test(\"Unexpected status code: \" + statusCode, function () {\r",
+							"            pm.expect(statusCode).to.be.oneOf([200, 400, 401, 403, 404,405, 500]);\r",
+							"        });\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10_team\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16914\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validBatchname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Load the Ajv library\r",
+							"const Ajv = require('ajv');\r",
+							"const ajv = new Ajv({ allErrors: true }); // Initialize Ajv\r",
+							"\r",
+							"// Define the schema\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"batchId\": { \"type\": \"integer\" },\r",
+							"    \"batchName\": { \"type\": \"string\" },\r",
+							"    \"batchDescription\": { \"type\": \"string\" },\r",
+							"    \"batchStatus\": { \"type\": \"string\" },\r",
+							"    \"batchNoOfClasses\": { \"type\": \"integer\" },\r",
+							"    \"programId\": { \"type\": \"integer\" },\r",
+							"    \"programName\": { \"type\": \"string\" }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"batchId\",\r",
+							"    \"batchName\",\r",
+							"    \"batchDescription\",\r",
+							"    \"batchStatus\",\r",
+							"    \"batchNoOfClasses\",\r",
+							"    \"programId\",\r",
+							"    \"programName\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"// Get the response JSON\r",
+							"const responseData = pm.response.json();\r",
+							"\r",
+							"// Validate the response against the schema\r",
+							"const validate = ajv.compile(schema);\r",
+							"const isValid = validate(responseData);\r",
+							"\r",
+							"// Log validation errors (if any)\r",
+							"if (!isValid) {\r",
+							"  console.log(\"Validation Errors:\", validate.errors);\r",
+							"}\r",
+							"\r",
+							"// Test if the validation passed\r",
+							"pm.test(\"Schema validation passed\", function () {\r",
+							"  pm.expect(isValid).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10-teamnzmaon\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "invalidbatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10-teamaa\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validbatchid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10-teamaa\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validbatchid(without token)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"team10-teamaa\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches/9660",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches",
+						"9660"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "missing Batchname for Batch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "missing ProgramID for Batch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"Team10-testb\",\r\n \"batchNoOfClasses\":60,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":\r\n ,}\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "missing NoofClasses for Batch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"// Test 2: Check if the response status line is  (OK)\r",
+							"pm.test(\"Status Line is \", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//Test 3: Check if the response has a json body\r",
+							"pm.test(\"Response has a Json body\"), function(){\r",
+							"    pm.response.to.have.jsonBody(true);\r",
+							"}\r",
+							"\r",
+							"// Test 4: Validate response time is less than 500ms\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Validate headers (e.g., Content-Type is application/json)\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Parse the response body\r",
+							"const responseData = pm.response.json();"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"batchDescription\":\r\n \"for team 10 api hackathon\",\r\n \"batchName\":\"\",\r\n \"batchNoOfClasses\":,\r\n \"batchStatus\":\"Active\",\r\n \"programId\":16917\r\n }\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/batches",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Check status code and display error messages\", function () {\r",
+					"    var statusCode = pm.response.code;\r",
+					"    \r",
+					"    // Custom Error Messages for different status codes\r",
+					"    if (statusCode === 200) {\r",
+					"        pm.test(\"Request was successful\", function () {\r",
+					"            pm.expect(statusCode).to.equal(200);\r",
+					"        });\r",
+					"    } \r",
+					"    else if (statusCode === 201){\r",
+					"    pm.test(\"Status code is 201\", function () {\r",
+					"        pm.expect(statusCode).to.equal(201);\r",
+					"       });\r",
+					"    }\r",
+					"    else if (statusCode === 400) {\r",
+					"        pm.test(\"Bad Request - The server could not understand the request\", function () {\r",
+					"            pm.expect(statusCode).to.equal(400);\r",
+					"        });\r",
+					"    } \r",
+					"    else if (statusCode === 401) {\r",
+					"        pm.test(\"Unauthorized - Authentication required\", function () {\r",
+					"            pm.expect(statusCode).to.equal(401);\r",
+					"        });\r",
+					"    }\r",
+					"    else if (statusCode === 403) {\r",
+					"        pm.test(\"Forbidden - You do not have permission to access this resource\", function () {\r",
+					"            pm.expect(statusCode).to.equal(403);\r",
+					"        });\r",
+					"    }\r",
+					"    else if (statusCode === 404) {\r",
+					"        pm.test(\"Not Found - The requested resource could not be found\", function () {\r",
+					"            pm.expect(statusCode).to.equal(404);\r",
+					"        });\r",
+					"    }\r",
+					"     else if (statusCode === 405) {\r",
+					"        pm.test(\"Method Not Allowed\", function () {\r",
+					"            pm.expect(statusCode).to.equal(405);\r",
+					"        });\r",
+					"    }\r",
+					"    else if (statusCode === 500) {\r",
+					"        pm.test(\"Internal Server Error - Something went wrong on the server\", function () {\r",
+					"            pm.expect(statusCode).to.equal(500);\r",
+					"        });\r",
+					"    } \r",
+					"    else {\r",
+					"        pm.test(\"Unexpected status code: \" + statusCode, function () {\r",
+					"            pm.expect(statusCode).to.be.oneOf([200, 400, 401, 403, 404,405, 500]);\r",
+					"        });\r",
+					"    }\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	]
+}
